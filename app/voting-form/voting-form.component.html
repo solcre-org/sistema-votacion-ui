@@ -1,0 +1,22 @@
+<div>
+  <h1>FORMULARIO DE VOTACIÓN</h1>
+
+  <form [formGroup]= "form" (ngSubmit)= "onSubmit()">
+
+    <label for="document-number">Ingrese su cédula sin puntos y con dígito verificador (ejemplo: 1111111-1):</label>
+    <input type="text" id="document-number" formControlName="document" required>
+
+    <br><br>
+
+    <label for="candidate">Seleccione candidato:</label>
+    <select id="candidate" formControlName="candidate">
+      <option value="" disabled selected>Selecciona un candidato</option>
+      <option *ngFor="let candidate of candidates" [value]="candidate">{{ candidate }}</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit" [disabled]="form.invalid">VOTAR</button>
+
+  </form>
+</div>
