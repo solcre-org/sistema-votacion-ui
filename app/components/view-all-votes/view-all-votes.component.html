@@ -1,0 +1,22 @@
+<div class="votes-container">
+    <h2>Lista de Todos los Votos</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Voter ID</th>
+          <th>Candidate Voted ID</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let vote of votes">
+          <td>{{ vote.id }}</td>
+          <td>{{ vote.voter_id }}</td>
+          <td>{{ vote.candidate_voted_id }}</td>
+          <td>{{ vote.date | date:'short' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

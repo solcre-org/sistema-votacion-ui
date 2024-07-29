@@ -1,22 +1,25 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
-import { VotingFormComponent } from './voting-form/voting-form.component';
-import { HeaderComponent } from './header/header.component';
+import { AppRoutingModule } from './app-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
-  declarations: [
-  ],
+  declarations: [],
   imports: [
     BrowserModule,
+    FormsModule,
     ReactiveFormsModule,
-    AppComponent,
-    HeaderComponent,
+    HttpClientModule,
+    AppRoutingModule,
+    RouterModule
   ],
-  providers: [],
-  bootstrap: [],
+  providers: [
+    provideHttpClient(withInterceptorsFromDi())
+  ],
+  bootstrap: []
 })
-
-export class AppModule {}
+export class AppModule { }

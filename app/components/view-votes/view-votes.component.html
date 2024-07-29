@@ -1,0 +1,9 @@
+<div class="votes-container">
+  <h2>Resultados</h2>
+  <ul>
+    <li *ngFor="let candidate of candidates">
+      {{ candidate.candidate }} {{ candidate.ap}}: {{ candidate.votes }} votos
+      <button (click)="viewVoteDetails(candidate)">Ver Detalles</button>
+    </li>
+  </ul>
+</div>
