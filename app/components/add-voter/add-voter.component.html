@@ -27,6 +27,8 @@
     <button type="submit" [disabled]="form.invalid">Agregar</button>
 </form>
 
-<div *ngIf="message" class="message" [ngClass]="{'success': success, 'error': !success}">
+@if (message) {
+<div class= "message" [ngClass]="{'success': success, 'error': !success}">
     {{message}}
 </div>
+}

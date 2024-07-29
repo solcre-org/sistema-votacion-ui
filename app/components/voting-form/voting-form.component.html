@@ -1,25 +1,38 @@
 <h1>Ingrese su voto</h1>
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
+  
   <label for="document">Documento:</label>
   <input id="document" formControlName="document" type="text" required>
-  <div *ngIf="form.controls['document'].invalid && form.controls['document'].touched">
-    <span *ngIf="form.controls['document'].errors?.['required']">Documento es requerido.</span>
-  </div>
+  @if (form.controls['document'].invalid && form.controls['document'].touched) {
+    <div>
+      @if (form.controls['document'].errors?.['required']) {
+        <span>Documento es requerido.</span>
+      }
+    </div>
+  }
 
   <label for="candidate_id">Candidato:</label>
   <select id="candidate_id" formControlName="candidate_id" required>
-    <option *ngFor="let candidato of candidates" [value]="candidato.id">
-      {{ candidato.name }}
-    </option>
+    @for (candidato of candidates; track candidato) {
+      <option [value]="candidato.id">
+        {{ candidato.name }}
+      </option>
+    }
   </select>
-  <div *ngIf="form.controls['candidate_id'].invalid && form.controls['candidate_id'].touched">
-    <span *ngIf="form.controls['candidate_id'].errors?.['required']">Candidato es requerido.</span>
-  </div>
+  @if (form.controls['candidate_id'].invalid && form.controls['candidate_id'].touched) {
+    <div>
+      @if (form.controls['candidate_id'].errors?.['required']) {
+        <span>Candidato es requerido.</span>
+      }
+    </div>
+  }
 
-<br><br>  
+  <br><br>  
   <button type="submit" [disabled]="form.invalid">Votar</button>
 </form>
 
-<div *ngIf="message" class="message" [ngClass]="{'success': success, 'error': !success}">
-  {{ message }}
-</div>
+@if (message) {
+  <div class="message" [ngClass]="{'success': success, 'error': !success}">
+    {{ message }}
+  </div>
+}

@@ -6,10 +6,12 @@
       <th>Votos</th>
     </thead>
     <tbody>
-      <tr *ngFor="let vote of votes">
-        <td>{{vote.candidate}}</td>
-        <td>{{vote.votes}}</td>
-      </tr>
+      @for (vote of votes; track vote){
+        <tr>
+          <td>{{vote.candidate}}</td>
+          <td>{{vote.votes}}</td>
+        </tr>
+      }
     </tbody>
   </table>
 </div>
