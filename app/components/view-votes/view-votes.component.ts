@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { Candidates } from '../../models/candidate.interface';
 
 @Component({
   selector: 'app-view-votes',
@@ -10,22 +11,25 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule]
 })
 
-export class ViewVotesComponent implements OnInit {
-  candidates: any[] = [];
+export class ViewVotesComponent implements OnInit{
+  votes: Candidates[] = [];
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
-    this.apiService.viewVotesByCandidate().subscribe(
-      (data: any) => {
-        this.candidates = data;
+
+    this.apiService.viewVotesByCandidate().subscribe({
+      next: (data: Candidates[]) => {
+        this.votes = data;
       },
-      (error) => {
+      error: (error) => {
         console.error('Error al obtener los votos', error);
       }
-    );
+    });
   }
-
+  
   viewVoteDetails(candidate: any): void {
   }
-}
+}  
+  
+  

@@ -16,8 +16,6 @@ export class LoginButtonComponent {
   constructor(private router: Router) {}
 
   goToLogin(): void {
-
     this.router.navigate(['/login']);
   }
-
 }

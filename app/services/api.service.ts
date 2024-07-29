@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
+import { Vote } from '../models/vote.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -41,9 +42,13 @@ export class ApiService {
     );  
   }
 
-  viewAllVotes(): Observable<any> {
+  viewAllVotes(): Observable<Vote[]> {
     return this.http.get(`${this.apiUrl}/vote/get_all_votes`).pipe(
       tap(response => console.log('Todos los votos listados obtenidos con éxito', response)),
+      map((respose: any) => {
+        //Magia
+        return <Vote[]> respose
+      }),
       catchError(error =>{
         console.log('Error al obtener votos', error);
         throw error;

@@ -7,8 +7,6 @@ import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 
-
-
 @Component({
   selector: 'app-voting-form',
   standalone: true,

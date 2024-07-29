@@ -1,11 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { AppComponent } from './app.component';
 import { WelcomeComponent } from './components/welcome/welcome.component';
-import { HeaderComponent } from './components/header/header.component';
-import { VotingFormComponent } from './components/voting-form/voting-form.component';
-import { LoginButtonComponent } from './components/login-button/login-button.component';
 import { LoginComponent } from './components/login/login.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { ViewVotesComponent } from './components/view-votes/view-votes.component';
