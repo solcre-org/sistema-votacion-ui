@@ -1,0 +1,40 @@
+.admin-panel {
+  max-width: 800px;
+  margin: auto;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  font-family: 'DM Sans', sans-serif;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.back-button{
+  background-color: #007bff;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.back-button:hover {
+  background-color: #0056b3;
+}
