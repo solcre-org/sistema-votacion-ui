@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../services/api.service';
 import {FormBuilder, Validators, FormGroup, ReactiveFormsModule, AbstractControl} from '@angular/forms';
+import { ErrorHandlerService } from '../../services/error-handler.service';
 
 
 @Component({
@@ -18,9 +19,11 @@ export class AddVoterComponent implements OnInit{
   message: string = '';
   success: boolean = false;
 
+
   constructor(
     private fb: FormBuilder,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private errorHandlerService: ErrorHandlerService
   ) {
     this.form = this.fb.group({
       name: ['', Validators.required],
@@ -43,30 +46,16 @@ export class AddVoterComponent implements OnInit{
         },
         error: (error) => {
           this.success = false;
-          console.error('Error al agregar votante', error);
-  
-          if (error.status === 422) {
-            if (error.error.detail && Array.isArray(error.error.detail)) {
-              const errorMessages = error.error.detail.map((d: any) => `${d.loc.join(' -> ')}: ${d.msg}`);
-              this.message = 'Error al agregar votante: ' + errorMessages.join(', ');
-            } else if (error.error.detail) {
-              this.message = 'Error al agregar votante: ' + error.error.detail;
-            } else {
-              this.message = 'Error al agregar votante: Datos inválidos.';
-            }
-          } else {
-            this.message = 'Error al agregar votante.';
-          }
+          this.message = this.errorHandlerService.handleError(error);
         },
-        complete: () => {
-          // Aquí puedes agregar cualquier lógica que quieras ejecutar cuando el observable se complete, si es necesario.
-        }
+        complete: () => { }
       });
     } else {
       this.success = false;
       this.message = 'Por favor, complete todos los campos requeridos.';
     }
   }
+
   
 
   dateValidator(control: AbstractControl): { [key: string]: any } | null {
