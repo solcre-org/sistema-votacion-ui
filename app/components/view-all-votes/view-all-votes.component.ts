@@ -11,6 +11,7 @@ import { Vote } from '../../models/vote.interface';
   styleUrls: ['./view-all-votes.component.css']
 })
 export class ViewAllVotesComponent implements OnInit{
+  
   votes: Vote[] = [];
 
   constructor(private apiService: ApiService){}

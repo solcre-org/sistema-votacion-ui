@@ -35,16 +35,16 @@ export class AddVoterComponent implements OnInit{
 
   onSubmit(): void {
     if (this.form.valid) {
-      this.apiService.addNewVoter(this.form.value).subscribe(
-        (response) => {
+      this.apiService.addNewVoter(this.form.value).subscribe({
+        next: (response) => {
           this.success = true;
           this.message = 'Votante creado con éxito';
           this.form.reset();
         },
-        (error) => {
+        error: (error) => {
           this.success = false;
           console.error('Error al agregar votante', error);
-
+  
           if (error.status === 422) {
             if (error.error.detail && Array.isArray(error.error.detail)) {
               const errorMessages = error.error.detail.map((d: any) => `${d.loc.join(' -> ')}: ${d.msg}`);
@@ -57,13 +57,17 @@ export class AddVoterComponent implements OnInit{
           } else {
             this.message = 'Error al agregar votante.';
           }
+        },
+        complete: () => {
+          // Aquí puedes agregar cualquier lógica que quieras ejecutar cuando el observable se complete, si es necesario.
         }
-      );
+      });
     } else {
       this.success = false;
       this.message = 'Por favor, complete todos los campos requeridos.';
     }
   }
+  
 
   dateValidator(control: AbstractControl): { [key: string]: any } | null {
     const value = control.value;

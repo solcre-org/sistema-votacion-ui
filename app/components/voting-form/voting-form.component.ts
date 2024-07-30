@@ -29,15 +29,17 @@ export class VotingFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.apiService.getCandidates().subscribe(
-      (data: any) => {
+    this.apiService.getCandidates().subscribe({
+      next: (data: any) => {
         this.candidates = data;
-      },
-      (error) => {
+    },
+      error: (error) => {
         console.error('Error al obtener candidatos', error);
       }
-    );
+    });
   }
+    
+  
 
   onSubmit(): void {
     if (this.form.valid) {
