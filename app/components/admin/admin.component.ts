@@ -10,7 +10,9 @@ import { Router } from '@angular/router';
 })
 export class AdminComponent {
   
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router
+  ) {}
 
   viewVotesByCandidate(): void {
     this.router.navigate(['/admin/view-votes']);
@@ -25,4 +27,9 @@ export class AdminComponent {
   }
 
   updatePassword(): void {}
+
+  returnPreviousPage(): void {
+    this.router.navigate(['/login']);
+  }
+
 }

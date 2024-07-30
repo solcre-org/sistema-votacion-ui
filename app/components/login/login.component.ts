@@ -23,7 +23,10 @@ export class LoginComponent {
   }
 
   login(): void {
-
     this.router.navigate(['/admin']);
+  }
+
+  returnPreviousPage(): void {
+    this.router.navigate(['/']);
   }
 }
