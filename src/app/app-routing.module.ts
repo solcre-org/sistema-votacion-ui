@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { VoteComponent } from './components/vote/vote.component';
-import { LoginComponent } from './components/login/login.component';
-import { AdminComponent } from './components/admin/admin.component';
-import { ViewVotesComponent } from './components/view-votes/view-votes.component';
-import { AddVoterComponent } from './components/add-voter/add-voter.component';
-import { ViewAllVotesComponent } from './components/view-all-votes/view-all-votes.component';
+import { VoteComponent } from './components/home/vote/vote.component';
+import { LoginComponent } from './components/auth/login/login.component';
+import { AdminComponent } from './components/management/admin/admin.component';
+import { ViewVotesComponent } from './components/management/view-votes/view-votes.component';
+import { AddVoterComponent } from './components/management/add-voter/add-voter.component';
+import { ViewAllVotesComponent } from './components/management/view-all-votes/view-all-votes.component';
 
 export const routes: Routes = [
   { path: '', component: VoteComponent },

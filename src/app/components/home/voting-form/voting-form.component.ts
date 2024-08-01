@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
 import {NgForOf, NgIf, NgClass} from "@angular/common";
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { ErrorHandlerService } from '../../services/error-handler.service';
+import { ErrorHandlerService } from '../../../services/error-handler.service';
 
 
 

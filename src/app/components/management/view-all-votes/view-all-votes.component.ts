@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
-import { Vote } from '../../models/vote.interface';
+import { Vote } from '../../../models/vote.interface';
 
 @Component({
   selector: 'app-view-all-votes',

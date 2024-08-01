@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ApiService } from '../../services/api.service';
+import { ApiService } from '../../../services/api.service';
 import {FormBuilder, Validators, FormGroup, ReactiveFormsModule, AbstractControl} from '@angular/forms';
-import { ErrorHandlerService } from '../../services/error-handler.service';
+import { ErrorHandlerService } from '../../../services/error-handler.service';
 
 
 @Component({
