@@ -1,12 +1,13 @@
 <form [formGroup]="form" (ngSubmit)="onSubmit()">
     <div>
         <label for="name">Nombre </label>
-        <input id="name" formControlName="name">
+        <input id="name" formControlName="name" type="text" required>
+
     </div>
 
     <div>
         <label for="last_name">Apellido </label>
-        <input id="last_name" formControlName="last_name">
+        <input id="last_name" formControlName="last_name" type="text" required>
     </div>
 
     <div>

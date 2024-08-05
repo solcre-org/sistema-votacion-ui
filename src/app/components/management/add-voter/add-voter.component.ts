@@ -63,4 +63,10 @@ export class AddVoterComponent implements OnInit{
     }
     return null;
   }
+
+  handleError(error: any): void {
+    this.success = false;
+    this.message = this.errorHandlerService.handleError(error);
+    console.error('Error al cargar votante', error);
+  }
 }

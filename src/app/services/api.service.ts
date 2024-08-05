@@ -22,6 +22,15 @@ export class ApiService {
     );
   }
 
+  addNewVoter(data: any): Observable<any> {
+    return this.http.post(`${this.apiUrl}/voter/create`, data).pipe(
+      tap(response => console.log('Votante creado con éxito', response)),
+      catchError(error => {
+        return throwError(() => error);
+      })
+    );
+  }
+  
   getCandidates(): Observable<any> {
     return this.http.get(`${this.apiUrl}/voter/get_candidate`).pipe(
       tap(response => console.log('Candidatos obtenidos con éxito', response)),
@@ -53,14 +62,7 @@ export class ApiService {
     );
   }
 
-  addNewVoter(data: any): Observable<any> {
-    return this.http.post(`${this.apiUrl}/voter/create`, data).pipe(
-      tap(response => console.log('Votante creado con éxito', response)),
-      catchError(error => {
-        return throwError(() => error);
-      })
-    );
-  }
+
 
   login(username: string, password: string): Observable<{ access_token: string }> {
 
