@@ -1,20 +1,17 @@
 <div class="votes-container">
-  <h2>Lista de Todos los Votos</h2>
   <table>
     <thead>
       <tr>
-        <th>ID</th>
-        <th>Voter ID</th>
-        <th>Candidate Voted ID</th>
-        <th>Date</th>
+        <th>Votante</th>
+        <th>Voto a:</th>
+        <th>Fecha</th>
       </tr>
     </thead>
     <tbody>
       @for (vote of votes; track vote){
       <tr>
-          <td>{{ vote.id }}</td>
-          <td>{{ vote.voter_id }}</td>
-          <td>{{ vote.candidate_voted_id }}</td>
+          <td>{{ vote.voter_name }}</td>
+          <td>{{ vote.candidate_name }}</td>
           <td>{{ vote.date | date:'short' }}</td>
       </tr>
     }

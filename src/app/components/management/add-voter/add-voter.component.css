@@ -5,7 +5,7 @@
   border: 1px solid #ccc;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  font-family: 'Open Sans', sans-serif; /* Aplicar la fuente */
+  font-family: 'Open Sans', sans-serif;
 }
 
 h2 {
@@ -27,7 +27,7 @@ input {
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-family: 'Open Sans', sans-serif; /* Aplicar la fuente */
+  font-family: 'Open Sans', sans-serif;
 }
 
 button {

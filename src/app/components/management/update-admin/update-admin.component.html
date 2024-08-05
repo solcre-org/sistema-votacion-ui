@@ -1,0 +1,35 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <div>
+        <label for="id">Id</label>
+        <input id="id" formControlName="id">
+    </div>
+
+    <div>
+        <label for="name">Nombre</label>
+        <input id="name" formControlName="name">
+    </div>
+
+    <div>
+        <label for="last_name">Apellido </label>
+        <input id="last_name" formControlName="last_name">
+    </div>
+
+    <div>
+        <label for="email">Email </label>
+        <input id="email" formControlName="email">
+    </div>
+
+    <div>
+        <label for="password">Password </label>
+        <input id="password" formControlName="password">
+    </div>
+    <br>
+    <button type="submit" [disabled]="form.invalid">Modificar</button>
+
+</form>
+@if (message) {
+    <div class= "message" [ngClass]="{'success': success, 'error': !success}">
+        {{message}}
+    </div>
+    }

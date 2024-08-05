@@ -1,6 +1,6 @@
 export interface Vote {
     id: string,
-    voter_id: number,
-    candidate_voted_id: number,
+    voter_name: number,
+    candidate_name: number,
     date: Date
 }
