@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../services/api.service';
 import {FormBuilder, Validators, FormGroup, ReactiveFormsModule, AbstractControl} from '@angular/forms';
@@ -13,7 +13,7 @@ import { ErrorHandlerService } from '../../../services/error-handler.service';
   styleUrls: ['./add-voter.component.css']
 })
 
-export class AddVoterComponent implements OnInit{
+export class AddVoterComponent {
 
   form: FormGroup;
   message: string = '';
@@ -34,7 +34,7 @@ export class AddVoterComponent implements OnInit{
     });
   }
 
-  ngOnInit(): void {}
+
 
   onSubmit(): void {
     if (this.form.valid) {
