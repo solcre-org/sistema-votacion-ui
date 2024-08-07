@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import {FormBuilder, Validators, FormGroup, ReactiveFormsModule} from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
-import {NgForOf, NgIf, NgClass} from "@angular/common";
 import { catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { ErrorHandlerService } from '../../../services/error-handler.service';
@@ -14,10 +13,11 @@ import { ErrorHandlerService } from '../../../services/error-handler.service';
   standalone: true,
   templateUrl: './voting-form.component.html',
   styleUrls: ['./voting-form.component.css'],
-  imports: [ReactiveFormsModule, NgForOf, NgIf, NgClass, CommonModule],
+  imports: [ReactiveFormsModule, CommonModule],
 })
 
 export class VotingFormComponent implements OnInit {
+  
   form: FormGroup;
   candidates: any[] = [];
   message: string = '';

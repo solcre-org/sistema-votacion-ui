@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component } from '@angular/core';
 import { ApiService } from '../../../services/api.service';
 import { FormBuilder, Validators, FormGroup, ReactiveFormsModule, AbstractControl } from '@angular/forms';
 import { ErrorHandlerService } from '../../../services/error-handler.service';
@@ -7,16 +6,17 @@ import { ErrorHandlerService } from '../../../services/error-handler.service';
 @Component({
   selector: 'app-update-admin',
   standalone: true,
-  imports: [ReactiveFormsModule, CommonModule],
+  imports: [ReactiveFormsModule],
   templateUrl: './update-admin.component.html',
   styleUrl: './update-admin.component.css'
 })
 
-export class UpdateAdminComponent implements OnInit {
+export class UpdateAdminComponent {
 
   form: FormGroup;
   message: string = '';
   success: boolean = false;
+  error: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -24,36 +24,22 @@ export class UpdateAdminComponent implements OnInit {
     private errorHandlerService: ErrorHandlerService
   ) {
     this.form = this.fb.group({
-      id: ['', Validators.required],
-      name: ['', Validators.required],
-      last_name: ['', Validators.required],
-      email: ['', Validators.required],
-      password: ['', [Validators.required]]
+      newPassword: ['', [Validators.required]]
     });
   }
 
-  ngOnInit(): void {}
 
   onSubmit(): void {
     if (this.form.valid) {
-      const admin_id = this.form.get('id')?.value;
-      const data = this.form.value;
-      delete data.id;
-      this.apiService.update_admin(admin_id, data).subscribe({
-        next: (response) => {
-          this.success = true;
-          this.message = 'Datos modificados con éxito';
-          this.form.reset();
+      const { newPassword } = this.form.value;
+      this.apiService.update_password(newPassword).subscribe({
+        next: () => {
+          alert('Contraseña actualizada correctamente');
         },
         error: (error) => {
-          this.success = false;
-          this.message = this.errorHandlerService.handleError(error);
-        },
-        complete: () => {}
+          this.error = 'No se pudo actualizar la contraseña.';
+        }
       });
-    } else {
-      this.success = false;
-      this.message = 'Por favor, complete todos los campos requeridos.';
     }
   }
 }

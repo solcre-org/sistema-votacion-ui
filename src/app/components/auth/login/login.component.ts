@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../services/api.service';
-import { errorContext } from 'rxjs/internal/util/errorContext';
-import { ErrorHandlerService } from '../../../services/error-handler.service';
 
 
 
@@ -18,9 +16,14 @@ import { ErrorHandlerService } from '../../../services/error-handler.service';
 export class LoginComponent {
 
   form: FormGroup;
+  message: string = '';
+  success: boolean = true;
 
-  constructor(private fb: FormBuilder, private router: Router, private apiService: ApiService) {
-    
+  constructor(
+    private fb: FormBuilder, 
+    private router: Router, 
+    private apiService: ApiService
+  ) {
     this.form = this.fb.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
@@ -31,14 +34,17 @@ export class LoginComponent {
     if (this.form.valid){
       const {username, password } = this.form.value;
       this.apiService.login(username, password).subscribe(
-        response => {
+        (response) => {
+          if (response){
           localStorage.setItem('token', response.access_token);
           this.router.navigate(['/admin']);
-        },
-        error => {
-          console.error('Acceso denegado', error);
         }
-      )
+      },
+      );
+    } else {
+      console.error('Credenciales inválidas');
+      this.success = false;
+      this.message = 'Credenciales inválidas';
     }
   }
 

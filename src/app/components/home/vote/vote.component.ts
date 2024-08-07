@@ -13,7 +13,9 @@ import { Router } from '@angular/router';
 })
 export class VoteComponent {
 
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+  ) {}
 
   goToLogin(): void {
     this.router.navigate(['/login'])

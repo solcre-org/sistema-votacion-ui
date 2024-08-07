@@ -1,21 +1,26 @@
 <div class="admin-panel">
   <h1>Bienvenidos a la gestión de la pantalla de votación</h1>
-  <button (click)="viewVotesByCandidate()">Resultado de la votación</button>  
+  <button (click)="viewVotesByCandidate()">Resultado de la votación </button>  
   @if (showResults){
     <app-view-votes></app-view-votes>
   }
 
-  <button (click)="viewAllVotes()">Detalle de votos ingresados</button>
+  <button (click)="viewAllVotes()">Detalle de votos ingresados </button>
   @if (showAllVotes){
     <app-view-all-votes ></app-view-all-votes>
   }
 
-  <button (click)="addVoter()">Agregar nuevo votante</button>
+  <button (click)="addVoter()">Agregar nuevo votante </button>
   @if (showAddVoter){
     <app-add-voter></app-add-voter>
   }
 
-  <button (click)="updatePassword()">Modificar datos del administrador</button>
+  <button (click)="updateVoter()">Modificar votante </button>
+  @if (showUpdateVoter){
+    <app-view-all-voters></app-view-all-voters>
+  }
+
+  <button (click)="updatePassword()">Modificar clave </button>
   @if(showUpdateAdmin){
     <app-update-admin></app-update-admin>
   }

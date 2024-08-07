@@ -1,0 +1,62 @@
+<div class="voter-container">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>id</th>
+          <th>Name </th>
+          <th>Last Name </th>
+          <th>Document </th>
+          <th>Date of Bithday </th>
+          <th>Is Candidate </th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (voter of voters; track voter){
+        <tr>
+            <td>
+                <input type="radio" name="selectedVoter" (click)="selectVoter(voter)" />
+              </td>
+            <td>{{voter.id}}</td>
+            <td>{{voter.name}}</td>
+            <td>{{voter.last_name}}</td>
+            <td>{{voter.document}}</td>
+            <td>{{voter.dob}}</td>
+            <td>{{voter.is_candidate}}</td>
+        </tr>
+    }
+      </tbody>
+    </table>
+
+    <div>
+        @if (selectedVoter){
+        <h2>Editar</h2>
+        <form (ngSubmit)="saveVoter()">
+          <div>
+            <label>Name: </label>
+            <input type="text" [(ngModel)]="selectedVoter.name" name="name" required />
+          </div>
+          <div>
+            <label>Last Name: </label>
+            <input type="text" [(ngModel)]="selectedVoter.last_name" name="last_name" required />
+          </div>
+          <div>
+            <label>Document: </label>
+            <input type="text" [(ngModel)]="selectedVoter.document" name="document" required />
+          </div>
+          <div>
+            <label>Date of Birth: </label>
+            <input type="date" [(ngModel)]="selectedVoter.dob" name="dob" required />
+          </div>
+          <div>
+            <label>Is Candidate: </label>
+            <input type="checkbox" [(ngModel)]="selectedVoter.is_candidate" name="is_candidate" />
+          </div>
+          <div>
+            <button type="submit">Save</button>
+            <button type="button" (click)="cancelEdit()">Cancel</button>
+          </div>
+        </form>
+    }
+      </div>
+    </div>
