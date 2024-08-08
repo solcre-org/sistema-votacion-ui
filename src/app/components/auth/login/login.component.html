@@ -7,16 +7,17 @@
     <button type="submit">Acceder</button>
   </form>
 
- <br>
+  <br>
 
- @if (message) {
+  @if (message) {
   <div class="message" [ngClass]="{'success': success, 'error': !success}">
     {{ message }}
   </div>
-}
+  }
 
-<br><br>
+  <br><br>
 
   <button class="back-button" (click)="returnPreviousPage()">Volver</button>
-
+  <br><br>
+  <a routerLink="/forgot-password">¿Olvidaste tu contraseña?</a>
 </div>

@@ -111,4 +111,15 @@ export class ApiService {
 
     return this.http.put(`${this.apiUrl}/admins/password`, { new_password: newPassword }, { headers });
   }
+
+  sendPasswordResetLink(email: string): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/recover-password/`, { email });
+  }
+
+  resetPassword(token: string, newPassword: string): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/reset-password/`, {
+      token: token, 
+      new_password: newPassword 
+    });
+  }
 }
