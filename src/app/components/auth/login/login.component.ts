@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
@@ -14,7 +14,7 @@ import { ErrorHandlerService } from '../../../services/error-handler.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
 
   form: FormGroup;
   message: string = '';
@@ -33,11 +33,17 @@ export class LoginComponent {
     });
   }
 
+  ngOnInit(): void {
+    if(this.authService.isLoggedIn()){
+      this.router.navigate(['admin'])
+    }
+  }
+
   login(): void {
     if (this.form.valid) {
       const { username, password } = this.form.value;
       this.apiService.login(username, password).subscribe({
-        next: (response) => {
+        next: (response: any) => {
           if (response && response.access_token) {
             this.authService.login(response.access_token);
             this.router.navigate(['/admin']);
