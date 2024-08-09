@@ -46,7 +46,6 @@ export class VotingFormComponent implements OnInit {
   }
     
   
-
   onSubmit(): void {
     if (this.form.valid) {
       this.apiService.sendVote(this.form.value).pipe(
@@ -67,6 +66,7 @@ export class VotingFormComponent implements OnInit {
       this.message = 'Formulario inválido';
     }
   }
+  
   handleError(error: any): void {
     this.success = false;
     this.message = this.errorHandlerService.handleError(error);

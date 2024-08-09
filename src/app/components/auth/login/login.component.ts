@@ -4,8 +4,8 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../services/api.service';
 import { RouterModule } from '@angular/router';
-import { AuthService } from './auth.service';
-
+import { AuthService } from '../auth.service';
+import { ErrorHandler } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +24,8 @@ export class LoginComponent {
     private fb: FormBuilder, 
     private router: Router, 
     private apiService: ApiService,
-    private authService: AuthService
+    private authService: AuthService,
+    private errorHandlerService: ErrorHandler
   ) {
     this.form = this.fb.group({
       username: ['', Validators.required],
@@ -38,7 +39,6 @@ export class LoginComponent {
       this.apiService.login(username, password).subscribe({
         next: (response) => {
           if (response && response.access_token) {
-
             this.authService.login(response.access_token);
             this.router.navigate(['/admin']);
             this.success = true;
@@ -47,11 +47,8 @@ export class LoginComponent {
         },
         error: (err) => {
           this.success = false;
-          if (err.status === 401) {
-            this.message = 'Usuario o contraseña incorrectos';
-          } else {
-            this.message = 'Ocurrió un error inesperado. Por favor, intenta nuevamente.';
-          }
+          this.message = this.errorHandlerService.handleError(err) || 'error desconocido';
+
         }
       });
     } else {
@@ -59,6 +56,7 @@ export class LoginComponent {
       this.message = 'Por favor, completa todos los campos.';
     }
   }
+  
 
   returnPreviousPage(): void {
     this.router.navigate(['/']);

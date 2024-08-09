@@ -5,7 +5,7 @@ import { LoginComponent } from './components/auth/login/login.component';
 import { AdminComponent } from './components/management/admin/admin.component';
 import { ForgotPasswordComponent } from './components/auth/forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
-import { AuthGuard } from './components/auth/login/auth.guards';
+import { AuthGuard } from './components/auth/auth.guards';
 
 export const routes: Routes = [
   { path: '', component: VoteComponent },

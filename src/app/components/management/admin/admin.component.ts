@@ -6,7 +6,7 @@ import { ViewVotesComponent } from '../view-votes/view-votes.component';
 import { ViewAllVotersComponent } from '../update-voter/update-voter.component';
 import { AddVoterComponent } from '../add-voter/add-voter.component';
 import { UpdateAdminComponent } from '../update-admin/update-admin.component';
-import { AuthService } from '../../auth/login/auth.service';
+import { AuthService } from '../../auth/auth.service';
 
 
 @Component({
