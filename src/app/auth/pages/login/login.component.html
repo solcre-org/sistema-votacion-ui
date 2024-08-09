@@ -4,13 +4,17 @@
     <input id="username" formControlName="username" type="text" required>
     <label for="password">Contraseña:</label>
     <input id="password" formControlName="password" type="password" required>
-    <button type="submit">Acceder</button>
+    <button 
+      type="submit"
+      [disabled]="loading">
+      {{ loading ? "Cargando..." : "Acceder" }}
+    </button>
   </form>
 
   <br>
 
   @if (message) {
-  <div class="message" [ngClass]="{'success': success, 'error': !success}">
+  <div class="message error">
     {{ message }}
   </div>
   }

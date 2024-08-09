@@ -18,7 +18,7 @@ export class LoginComponent implements OnInit{
 
   form: FormGroup;
   message: string = '';
-  success: boolean = true;
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder, 
@@ -41,28 +41,28 @@ export class LoginComponent implements OnInit{
 
   login(): void {
     if (this.form.valid) {
-      const { username, password } = this.form.value;
+      const { username, password } = this.form.value; 
+
+      this.loading = true;
+      this.message = '';
       this.apiService.login(username, password).subscribe({
         next: (response: any) => {
+          this.loading = false;
+
           if (response && response.access_token) {
             this.authService.login(response.access_token);
             this.router.navigate(['/admin']);
-            this.success = true;
-            this.message = 'Inicio de sesión exitoso';
           }
         },
         error: (err) => {
-          this.success = false;
           this.message = this.errorHandlerService.handleError(err) || 'error desconocido';
-
+          this.loading = false;
         }
       });
     } else {
-      this.success = false;
       this.message = 'Por favor, completa todos los campos.';
     }
   }
-  
 
   returnPreviousPage(): void {
     this.router.navigate(['/']);
