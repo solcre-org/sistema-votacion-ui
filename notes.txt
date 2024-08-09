@@ -1,0 +1,32 @@
+app
+- auth
+-- components
+-- pages
+-- services
+-- guards
+-- models
+-- directives
+
+- vote
+-- components
+-- pages
+-- services
+-- guards
+-- models
+-- directives
+
+- managment
+-- components
+-- pages
+-- services
+-- guards
+-- models
+-- directives
+
+- shared
+-- components
+-- pages
+-- services
+-- guards
+-- models
+-- directives

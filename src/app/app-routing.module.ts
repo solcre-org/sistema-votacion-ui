@@ -1,20 +1,36 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { VoteComponent } from './components/home/vote/vote.component';
-import { LoginComponent } from './components/auth/login/login.component';
-import { AdminComponent } from './components/management/admin/admin.component';
-import { ForgotPasswordComponent } from './components/auth/forgot-password/forgot-password.component';
-import { ResetPasswordComponent } from './components/auth/reset-password/reset-password.component';
-import { AuthGuard } from './components/auth/auth.guards';
-import { ViewVotesComponent } from './components/management/view-votes/view-votes.component';
-import { ViewAllVotesComponent } from './components/management/view-all-votes/view-all-votes.component';
-import { AddVoterComponent } from './components/management/add-voter/add-voter.component';
-import { ViewAllVotersComponent } from './components/management/update-voter/update-voter.component';
-import { UpdateAdminComponent } from './components/management/update-admin/update-admin.component';
+import { LoginComponent } from './auth/pages/login/login.component';
+import { ForgotPasswordComponent } from './auth/pages/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './auth/pages/reset-password/reset-password.component';
+import { ViewVotesComponent } from './managment/pages/view-votes/view-votes.component';
+import { ViewAllVotesComponent } from './managment/pages/view-all-votes/view-all-votes.component';
+import { AddVoterComponent } from './managment/pages/add-voter/add-voter.component';
+import { ViewAllVotersComponent } from './managment/pages/update-voter/update-voter.component';
+import { UpdateAdminComponent } from './managment/pages/update-admin/update-admin.component';
+import { AuthGuard } from './auth/guards/auth.guards';
+import { VoteComponent } from './vote/pages/vote/vote.component';
+import { AdminComponent } from './managment/components/admin/admin.component';
 
 export const routes: Routes = [
   { path: '', component: VoteComponent },
-  { path: 'login', component: LoginComponent },
+  { 
+    path: 'auth', 
+    children: [
+      {
+        path: '', 
+        component: LoginComponent,
+      },
+      { 
+        path: 'forgot-password', 
+        component: ForgotPasswordComponent 
+      },
+      {   
+        path: 'reset-password', 
+        component: ResetPasswordComponent 
+      },
+    ]
+  },
   { 
     path: 'admin', 
     component: AdminComponent, 
@@ -42,8 +58,6 @@ export const routes: Routes = [
       }
     ]
   },
-  { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: 'reset-password', component: ResetPasswordComponent },
   { path: '**', redirectTo: '' }
 
 ];
