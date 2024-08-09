@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { ErrorHandlerService } from '../../../services/error-handler.service';
 
 @Component({
   selector: 'app-reset-password',
@@ -21,7 +22,8 @@ export class ResetPasswordComponent {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private errorHandlerService: ErrorHandlerService
   ) {
     this.token = this.route.snapshot.queryParams['token'];
     this.form = this.fb.group({
@@ -39,11 +41,7 @@ export class ResetPasswordComponent {
         },
         error: (error) => {
           this.success = false;
-          if (error.status === 422) {
-            this.message = 'Error de validación: ' + error.error.detail.map((d: any) => d.msg).join(', ');
-          } else {
-            this.message = 'Error al restablecer la contraseña.';
-          }
+          this.message = this.errorHandlerService.handleError(error);
         }
       });
     } else {

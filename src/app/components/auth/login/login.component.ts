@@ -5,7 +5,7 @@ import { CommonModule } from '@angular/common';
 import { ApiService } from '../../../services/api.service';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { ErrorHandler } from '@angular/core';
+import { ErrorHandlerService } from '../../../services/error-handler.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +25,7 @@ export class LoginComponent {
     private router: Router, 
     private apiService: ApiService,
     private authService: AuthService,
-    private errorHandlerService: ErrorHandler
+    private errorHandlerService: ErrorHandlerService
   ) {
     this.form = this.fb.group({
       username: ['', Validators.required],

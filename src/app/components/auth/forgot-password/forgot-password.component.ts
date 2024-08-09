@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { ApiService } from '../../../services/api.service';
 import { CommonModule } from '@angular/common';
+import { ErrorHandlerService } from '../../../services/error-handler.service';
 
 @Component({
   selector: 'app-forgot-password',
@@ -18,7 +19,8 @@ export class ForgotPasswordComponent {
 
   constructor(
     private fb: FormBuilder, 
-    private apiService: ApiService
+    private apiService: ApiService,
+    private errorHandlerService: ErrorHandlerService,
   ) {
     this.form = this.fb.group({
       email: ['', [Validators.required, Validators.email]]
@@ -33,7 +35,7 @@ export class ForgotPasswordComponent {
         },
         error: (error) => {
           this.success = false;
-          this.message = 'Error al enviar el enlace de recuperación.';
+          this.message = this.errorHandlerService.handleError(error);
           console.error('Error al enviar el enlace de recuperación', error);
         }
       });
