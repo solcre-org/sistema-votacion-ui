@@ -11,6 +11,7 @@ import { UpdateAdminComponent } from './managment/pages/update-admin/update-admi
 import { AuthGuard } from './auth/guards/auth.guards';
 import { VoteComponent } from './vote/pages/vote/vote.component';
 import { AdminComponent } from './managment/components/admin/admin.component';
+import { WelcomeComponent } from './managment/pages/welcome/welcome.component';
 
 export const routes: Routes = [
   { path: '', component: VoteComponent },
@@ -36,6 +37,10 @@ export const routes: Routes = [
     component: AdminComponent, 
     canActivate: [AuthGuard],
     children: [
+      {
+        path: '', 
+        component: WelcomeComponent,
+      },
       {
         path: 'view-votes', 
         component: ViewVotesComponent,
