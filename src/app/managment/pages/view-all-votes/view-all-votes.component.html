@@ -8,13 +8,19 @@
       </tr>
     </thead>
     <tbody>
-      @for (vote of sortedVotes; track vote){
-      <tr>
-        <td>{{ vote.voter_name }}</td>
-        <td>{{ vote.candidate_name }}</td>
-        <td>{{ vote.date | date:'short' }}</td>
-      </tr>
-    }
+      @if (loading) {
+        <tr>
+          <td colspan="3">Cargando...</td>
+        </tr>
+      } @else {
+        @for (vote of sortedVotes; track vote){
+          <tr>
+            <td>{{ vote.voter_name }}</td>
+            <td>{{ vote.candidate_name }}</td>
+            <td>{{ vote.date | date:'short' }}</td>
+          </tr>
+        }
+      }
     </tbody>
   </table>
 </div>

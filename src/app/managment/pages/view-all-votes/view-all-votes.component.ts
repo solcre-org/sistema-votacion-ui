@@ -11,7 +11,7 @@ import { Vote } from '../../../shared/models/vote.interface';
   styleUrls: ['./view-all-votes.component.css']
 })
 export class ViewAllVotesComponent implements OnInit{
-  
+  loading: boolean = false;
   votes: Vote[] = [];
   sortedVotes: Vote[] = [];
   currentSortColumn: string = '';
@@ -20,13 +20,17 @@ export class ViewAllVotesComponent implements OnInit{
   constructor(private apiService: ApiService){}
 
   ngOnInit(): void {
+    this.loading = true;
+
     this.apiService.viewAllVotes().subscribe({
       next: (data: Vote[]) => {
         this.votes = data;
         this.sortedVotes = [...this.votes]; 
+        this.loading = false;
       },
       error: (error) => {
         console.error('Error al obtener el detalle de todos los votos', error);
+        this.loading = false;
       }
     });
   }
