@@ -51,5 +51,9 @@ export class AdminComponent {
   returnPreviousPage(): void {
     this.router.navigate(['/login']);
   }
+  logout(): void {
+    localStorage.removeItem('token');
+    this.router.navigate(['/']);
+  }
 
 }

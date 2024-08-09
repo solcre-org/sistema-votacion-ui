@@ -32,20 +32,30 @@ export class LoginComponent {
   }
 
   login(): void {
-    if (this.form.valid){
-      const {username, password } = this.form.value;
-      this.apiService.login(username, password).subscribe(
-        (response) => {
-          if (response){
-          localStorage.setItem('token', response.access_token);
-          this.router.navigate(['/admin']);
+    if (this.form.valid) {
+      const { username, password } = this.form.value;
+      this.apiService.login(username, password).subscribe({
+        next: (response) => {
+          if (response && response.access_token) {
+            localStorage.setItem('token', response.access_token);
+            this.router.navigate(['/admin']);
+            this.success = true;
+            this.message = 'Inicio de sesión exitoso';
+          }
+        },
+        error: (err) => {
+          console.error('Error en el inicio de sesión:', err);
+          this.success = false;
+          if (err.status === 401) {
+            this.message = 'Usuario o contraseña incorrectos';
+          } else {
+            this.message = 'Ocurrió un error inesperado. Por favor, intenta nuevamente.';
+          }
         }
-      },
-      );
+      });
     } else {
-      console.error('Credenciales inválidas');
       this.success = false;
-      this.message = 'Credenciales inválidas';
+      this.message = 'Por favor, completa todos los campos.';
     }
   }
 
