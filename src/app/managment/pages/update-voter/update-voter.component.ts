@@ -36,11 +36,14 @@ export class ViewAllVotersComponent implements OnInit {
     if (this.selectedVoter) {
       this.apiService.update_voter(this.selectedVoter.id, this.selectedVoter).subscribe({
         next: (updatedVoter: Voter) => {
-          const index = this.voters.findIndex(v => v.id === updatedVoter.id);
+          const index: number = this.voters.findIndex(v => v.id === this.selectedVoter?.id);
+          
           if (index !== -1) {
             this.voters[index] = updatedVoter;
-            this.selectedVoter = null; 
           }
+
+          //CLOSE FORM
+          this.selectedVoter = null;
         },
         error: (error) => {
           console.error('Error al actualizar el votante', error);
