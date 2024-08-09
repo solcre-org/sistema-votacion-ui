@@ -6,6 +6,8 @@ import { ViewVotesComponent } from '../view-votes/view-votes.component';
 import { ViewAllVotersComponent } from '../update-voter/update-voter.component';
 import { AddVoterComponent } from '../add-voter/add-voter.component';
 import { UpdateAdminComponent } from '../update-admin/update-admin.component';
+import { AuthService } from '../../auth/login/auth.service';
+
 
 @Component({
   selector: 'app-admin',
@@ -25,7 +27,8 @@ export class AdminComponent {
   
   constructor(
     private apiService: ApiService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   viewVotesByCandidate(): void {
@@ -51,9 +54,10 @@ export class AdminComponent {
   returnPreviousPage(): void {
     this.router.navigate(['/login']);
   }
+
   logout(): void {
-    localStorage.removeItem('token');
-    this.router.navigate(['/']);
+    this.authService.logout();
+    this.router.navigate(['/login']);
   }
 
 }

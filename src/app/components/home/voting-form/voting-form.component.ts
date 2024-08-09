@@ -63,7 +63,6 @@ export class VotingFormComponent implements OnInit {
         }
       );
     } else {
-      console.error('Formulario inválido');
       this.success = false;
       this.message = 'Formulario inválido';
     }
