@@ -12,18 +12,23 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./update-voter.component.css']
 })
 export class ViewAllVotersComponent implements OnInit {
+  loading: boolean = false;
   voters: Voter[] = [];
   selectedVoter: Voter | null = null;
 
   constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
+    this.loading = true;
+
     this.apiService.viewAllVoters().subscribe({
       next: (data: Voter[]) => {
         this.voters = data;
+        this.loading = false;
       },
       error: (error) => {
         console.error('Error al obtener el detalle de todos los votantes', error);
+        this.loading = false;
       }
     });
   }

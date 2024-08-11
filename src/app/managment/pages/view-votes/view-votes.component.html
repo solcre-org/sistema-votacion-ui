@@ -5,12 +5,19 @@
       <th>Votos</th>
     </thead>
     <tbody>
+      @if(loading){
+        <tr>
+          <td colspan="3">Cargando...</td>
+        </tr>
+      } @else {
       @for (vote of votes; track vote){
         <tr>
           <td>{{vote.candidate}}</td>
           <td>{{vote.votes}}</td>
         </tr>
       }
+    }  
+    
     </tbody>
   </table>
 </div>

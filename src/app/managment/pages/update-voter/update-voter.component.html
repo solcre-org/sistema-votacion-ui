@@ -12,6 +12,11 @@
         </tr>
       </thead>
       <tbody>
+        @if (loading) {
+          <tr>
+            <td colspan="3">Cargando...</td>
+          </tr>
+        } @else {
         @for (voter of voters; track voter){
         <tr>
           <td>{{voter.id}}</td>
@@ -24,6 +29,7 @@
               <button (click)="selectVoter(voter)">EDIT</button>
           </td>
         </tr>
+      }
     }
       </tbody>
     </table>
