@@ -34,8 +34,6 @@ export class AddVoterComponent {
     });
   }
 
-
-
   onSubmit(): void {
     if (this.form.valid) {
       this.apiService.addNewVoter(this.form.value).subscribe({
