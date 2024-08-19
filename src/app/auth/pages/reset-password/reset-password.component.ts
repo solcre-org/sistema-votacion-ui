@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiService } from '../../../shared/services/api.service';
 import { CommonModule } from '@angular/common';
+import { HttpErrorResponse } from '@angular/common/http';
 import { ErrorHandlerService } from '../../../shared/services/error-handler.service';
 
 @Component({
@@ -27,19 +28,22 @@ export class ResetPasswordComponent {
   ) {
     this.token = this.route.snapshot.queryParams['token'];
     this.form = this.fb.group({
-      newPassword: ['', [Validators.required]]
+      newPassword: ['', [Validators.required, Validators.minLength(6)]]
     });
   }
 
   onSubmit(): void {
     if (this.form.valid) {
-      this.apiService.resetPassword(this.token, this.form.value.newPassword).subscribe({
+      const token = this.token;
+      const newPassword = this.form.get('newPassword')?.value;
+  
+      this.apiService.resetPassword(token, newPassword).subscribe({
         next: () => {
           this.success = true;
           this.message = 'Contraseña restablecida con éxito.';
           this.router.navigate(['/auth']);
         },
-        error: (error) => {
+        error: (error: HttpErrorResponse) => {
           this.success = false;
           this.message = this.errorHandlerService.handleError(error);
         }
